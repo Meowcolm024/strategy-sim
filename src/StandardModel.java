@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class StandardModel extends BaseModel {
 
     String[] recordings;
@@ -56,5 +58,10 @@ class StandardModel extends BaseModel {
                 return Decision.BETRAY;
 
         return Decision.COOPERATE;
+    }
+
+    @Override
+    public String toString() {
+        return (name + " score: " + score + "  Rec: " + Arrays.toString(recordings));
     }
 }

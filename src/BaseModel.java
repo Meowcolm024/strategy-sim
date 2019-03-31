@@ -1,6 +1,6 @@
 class BaseModel {
 
-    private final String name;
+    final String name;
     int score;
 
     BaseModel(String name) {
