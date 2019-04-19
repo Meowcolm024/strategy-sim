@@ -13,10 +13,10 @@ public class Main {
                 new KindModel("Kind"),
                 new RandomModel("Random"),
                 new MaliceModel("Malice"),
-                new StandardModel("Standard", COUNT),
-                new OnceModel("Once", COUNT),
-                new ReverseModel("Reverse", COUNT),
-                new OnRdModel("OnceRandom", COUNT)
+                new StandardModel("Standard"),
+                new OnceModel("Once"),
+                new ReverseModel("Reverse"),
+                new OnRdModel("OnceRandom")
         };
 
         for (int i = 0; i < LIMIT; i++){

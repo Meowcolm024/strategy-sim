@@ -1,18 +1,15 @@
 class ReverseModel extends StandardModel{
 
-    ReverseModel(String name, int parts) {
-        super(name, parts);
+    ReverseModel(String name) {
+        super(name);
     }
 
     @Override
     Decision act(BaseModel enemy) {
 
-        //System.out.println("RLast:" + Arrays.toString(recordings));
-
-        for (String i : recordings)
-            if (enemy.get_name().equals(i))
-                return Decision.COOPERATE;
-
-        return Decision.BETRAY;
+        if (recordings.hasElem(enemy.get_name()))
+            return Decision.COOPERATE;
+        else
+            return Decision.BETRAY;
     }
 }

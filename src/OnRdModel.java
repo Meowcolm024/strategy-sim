@@ -2,8 +2,8 @@ public class OnRdModel extends OnceModel {
 
     private int counter;
 
-    OnRdModel(String name, int parts) {
-        super(name, parts);
+    OnRdModel(String name) {
+        super(name);
         counter = 0;
     }
 
@@ -18,10 +18,9 @@ public class OnRdModel extends OnceModel {
             return Decision.BETRAY;
         }
 
-        for (String i : recordings)
-            if (enemy.get_name().equals(i))
-                return Decision.BETRAY;
-
-        return Decision.COOPERATE;
+        if (recordings.hasElem(enemy.get_name()))
+            return Decision.BETRAY;
+        else
+            return Decision.COOPERATE;
     }
 }

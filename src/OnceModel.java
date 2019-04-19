@@ -1,7 +1,7 @@
 class OnceModel extends StandardModel{
 
-    OnceModel(String name, int parts) {
-        super(name, parts);
+    OnceModel(String name) {
+        super(name);
     }
 
     @Override

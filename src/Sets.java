@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Sets<T> {
 
     private class Node{
@@ -8,10 +10,6 @@ public class Sets<T> {
             next = null;
             index = c;
         }
-
-        void link(Node n) {
-            next = n;
-        }
     }
 
     private Node content;
@@ -19,7 +17,6 @@ public class Sets<T> {
     Sets() {
         content = new Node(null);
     }
-
 
     int length() {
         Node tmp = content.next;
@@ -43,10 +40,12 @@ public class Sets<T> {
 
     void pop(T k) {
         Node t = content.next;
-        Node n = t.next;
 
         if (t == null)
             return;
+
+        Node n = t.next;
+
         if (t.index.equals(k))
             content.next = t.next;
         while (n != null) {
@@ -59,19 +58,29 @@ public class Sets<T> {
         }
     }
 
-    void show() {
-        Node t = content.next;
-        System.out.print("[");
-        while (t != null) {
-            System.out.print(t.index + ", ");
-            t = t.next;
+    boolean hasElem(T k) {
+        for (Node tmp = content.next; tmp != null; tmp = tmp.next) {
+            if (tmp.index == k)
+                return true;
         }
-        System.out.println("]");
+        return false;
+    }
+
+    ArrayList<T> toArr() {
+        Node tmp = content;
+        ArrayList<T> arr = new ArrayList<>();
+        while (tmp.next != null) {
+            arr.add(tmp.index);
+            tmp = tmp.next;
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
-        // Sets<Integer> s = new Sets<>();
-
+        Sets<Integer> s = new Sets<>();
+        s.push(1);
+        s.push(2);
+        System.out.println(s.hasElem(3));
 
     }
 }

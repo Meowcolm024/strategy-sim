@@ -1,14 +1,10 @@
-import java.util.Arrays;
-
 class StandardModel extends BaseModel {
 
-    String[] recordings;
+    Sets<String> recordings;
 
-    StandardModel(String name, int parts) {
+    StandardModel(String name) {
         super(name);
-        this.recordings = new String[parts];
-        for (int i = 0; i < recordings.length; i++)
-            recordings[i] = "";
+        this.recordings = new Sets<>();
     }
 
     @Override
@@ -31,37 +27,24 @@ class StandardModel extends BaseModel {
     }
 
     void log_betray(BaseModel e) {
-        for (int i = 0; i < recordings.length; i++) {
-            if (recordings[i].equals(e.get_name()))
-                break;
-            if (recordings[i].equals("")){
-                recordings[i] = e.get_name();
-                break;
-            }
-        }
+        recordings.push(e.get_name());
     }
 
     private void del_betray(BaseModel e) {
-        for (int i = 0; i < recordings.length; i++){
-            if (recordings[i].equals(e.get_name()))
-                recordings[i] = "";
-        }
+        recordings.pop(e.get_name());
     }
 
     @Override
     Decision act(BaseModel enemy) {
 
-        //System.out.println("Last:" + Arrays.toString(recordings));
-
-        for (String i : recordings)
-            if (enemy.get_name().equals(i))
-                return Decision.BETRAY;
-
-        return Decision.COOPERATE;
+        if (recordings.hasElem(enemy.get_name()))
+            return Decision.BETRAY;
+        else
+            return Decision.COOPERATE;
     }
 
     @Override
     public String toString() {
-        return (name + " score: " + score + "  Rec: " + Arrays.toString(recordings));
+        return (name + " score: " + score + "  Rec: " + recordings.toArr());
     }
 }
