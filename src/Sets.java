@@ -18,6 +18,16 @@ public class Sets<T> {
         content = new Node(null);
     }
 
+    Sets(T[] xs) {
+        content = new Node(null);
+        Node tmp = content;
+        for (T x : xs) {
+            tmp.next = new Node(x);
+            tmp = tmp.next;
+        }
+    }
+
+    // the count of elements in the set
     int length() {
         Node tmp = content.next;
         int x = 0;
@@ -28,6 +38,7 @@ public class Sets<T> {
         return x;
     }
 
+    // add element to the set
     void push(T k) {
         Node t = content;
         while (t.next != null) {
@@ -38,6 +49,7 @@ public class Sets<T> {
         t.next = new Node(k);
     }
 
+    // delete element from the set
     void pop(T k) {
         Node t = content.next;
 
@@ -58,6 +70,7 @@ public class Sets<T> {
         }
     }
 
+    // check whether an element is in the set
     boolean hasElem(T k) {
         for (Node tmp = content.next; tmp != null; tmp = tmp.next) {
             if (tmp.index == k)
@@ -66,21 +79,27 @@ public class Sets<T> {
         return false;
     }
 
+    // convert the set to an ArrayList
     ArrayList<T> toArr() {
         Node tmp = content;
         ArrayList<T> arr = new ArrayList<>();
-        while (tmp.next != null) {
+        while (tmp != null) {
             arr.add(tmp.index);
             tmp = tmp.next;
         }
         return arr;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(toArr());
+    }
+
     public static void main(String[] args) {
-        Sets<Integer> s = new Sets<>();
-        s.push(1);
-        s.push(2);
-        System.out.println(s.hasElem(3));
+        Integer[] x = {1,2,3,4,5,6,7,8,9,10};
+        Sets<Integer> s = new Sets<>(x);
+        System.out.println(s);
+        System.out.println(s.length());
 
     }
 }

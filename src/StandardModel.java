@@ -45,6 +45,6 @@ class StandardModel extends BaseModel {
 
     @Override
     public String toString() {
-        return (name + " score: " + score + "  Rec: " + recordings.toArr());
+        return (name + " score: " + score + "  Rec: " + recordings);
     }
 }
